@@ -1,16 +1,21 @@
 import * as React from "react";
 import { View, Text } from "react-native";
+import { connect, Provider } from 'react-redux'
+import { createStore } from 'redux'
+import Deck from "./components/Deck";
+import reducer from './reducers'
+import middleware from './middleware'
 
-export default function App() {
-  return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <Text>Universal React with Expo</Text>
-    </View>
-  );
+class App extends React.Component{
+  render(){
+    return (
+      <Provider store={createStore(reducer,middleware)}>
+          <View>
+            <Deck />
+          </View>
+      </Provider>
+    )
+  }
 }
+
+export default App
